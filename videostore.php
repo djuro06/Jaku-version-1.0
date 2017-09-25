@@ -284,7 +284,7 @@ else if(isset($_POST["getSlot"]) && $_POST["getSlot"] === "True"){
 		return;
 	}
 
-	$price = $slotPrices[$wallet[0]["maxvideostoreslots"]];
+	$price = $slotPrices[$wallet["maxvideostoreslots"]];
 
 	if($price > $wallet["balance"]){
 		echo json_encode("Insufficient funds");
@@ -541,18 +541,15 @@ function showVideostoreVideos(videos)
 		var htmlString = '\
 	  		<h3 style="cursor: pointer; cursor: hand; color:'+fontColors[category]+'" data-targetid="#'+category+'Carousel">'+category+' Category</h3>\
 			<div id="'+category+'Carousel" class="carousel slide" data-ride="carousel">\
-				<!-- Indicators -->'+
-				createIndicators()
-				+'\
 				<!-- Wrapper for slides -->'+
 				createCarouselItems()
 				+
 				'<!-- Left and right controls -->\
-				<a class="left carousel-control" href="#'+category+'Carousel" data-slide="prev">\
+				<a class="left carousel-control" style="width:40px; margin:0 auto;" href="#'+category+'Carousel" data-slide="prev">\
 					<span class="glyphicon glyphicon-chevron-left"></span>\
 					<span class="sr-only">Previous</span>\
 				</a>\
-				<a class="right carousel-control" href="#'+category+'Carousel" data-slide="next">\
+				<a class="right carousel-control" style="width:40px; margin:0 auto;" href="#'+category+'Carousel" data-slide="next">\
 					<span class="glyphicon glyphicon-chevron-right"></span>\
 					<span class="sr-only">Next</span>\
 				</a>\
@@ -560,21 +557,6 @@ function showVideostoreVideos(videos)
 		<br>'
 
 		return htmlString
-	}
-
-	function createIndicators(){
-		var indicators = '<ol class="carousel-indicators">';
-
-		for(var i=0; i<numOfSlides; i++){
-			if(i==0)
-				indicators += '<li data-target="#'+category+'Carousel" data-slide-to="'+i+'" class="active"></li>'
-			else
-				indicators += '<li data-target="#'+category+'Carousel" data-slide-to="'+i+'"></li>'
-		}
-
-		indicators += '</ol>';	
-
-		return indicators;
 	}
 
 	function createCarouselItems(){
